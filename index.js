@@ -1,22 +1,34 @@
-const account = require('./router/accountrouter.js');
+const accountRoute = require('./router/accountrouter');
 const mongoose = require('mongoose');
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 
 const PORT = 4000;
-
-app.use('/accounts', account);
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
 
-mongoose.connect('mongodb://localhost:27017/test');
+// connect local on computer
+main().catch((err) => console.log(err));
 
-mongoose.connection.on('error', (err) => {
-  console.log('err', err);
-});
+async function main() {
+  await mongoose.connect('mongodb://localhost:27017/managementsystem');
+  console.log('connected to datbase successfully');
+}
 
-mongoose.connection.on('connected', (err, res) => {
-  console.log('mongoose is connected');
-});
+app.use(bodyParser.json());
+
+// routes
+app.use('/account', accountRoute);
+
+// mongoose.connect('mongodb://localhost:27017/test');
+
+// mongoose.connection.on('error', (err) => {
+//   console.log('err', err);
+// });
+
+// mongoose.connection.on('connected', (err, res) => {
+//   console.log('mongoose is connected');
+// });
