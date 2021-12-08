@@ -1,4 +1,5 @@
 const accountRoute = require('./router/accountrouter');
+const robloxRouter = require('./router/robloxaccount');
 const mongoose = require('mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -22,7 +23,7 @@ app.use(bodyParser.json());
 
 // routes
 app.use('/account', accountRoute);
-
+app.use('/roblox', robloxRouter);
 // mongoose.connect('mongodb://localhost:27017/test');
 
 // mongoose.connection.on('error', (err) => {

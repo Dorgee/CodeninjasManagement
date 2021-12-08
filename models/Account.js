@@ -16,6 +16,12 @@ const AccountSchema = mongoose.Schema({
   description: {
     type: String,
   },
+  roblox: {
+    type: this.schema.Types.ObjectId, ref:'Robloxs'
+  },
+  scratch:{
+    type: this.schema.Types.ObjectId, ref: 'Scratch'
+  }
 });
 
 module.exports = mongoose.model('Accounts', AccountSchema);
