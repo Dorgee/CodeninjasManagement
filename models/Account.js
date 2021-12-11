@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+Schema = mongoose.Schema;
 
 const AccountSchema = mongoose.Schema({
   username: {
@@ -17,11 +18,13 @@ const AccountSchema = mongoose.Schema({
     type: String,
   },
   roblox: {
-    type: this.schema.Types.ObjectId, ref:'Robloxs'
+    type: Schema.Types.ObjectId,
+    ref: 'Robloxs',
   },
-  scratch:{
-    type: this.schema.Types.ObjectId, ref: 'Scratch'
-  }
+  scratch: {
+    type: Schema.Types.ObjectId,
+    ref: 'Scratch',
+  },
 });
 
 module.exports = mongoose.model('Accounts', AccountSchema);

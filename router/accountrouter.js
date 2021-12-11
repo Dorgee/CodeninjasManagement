@@ -53,6 +53,7 @@ router.patch('/:accountId', async (req, res) => {
   }
 });
 
+// delete a specific account
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   try {
