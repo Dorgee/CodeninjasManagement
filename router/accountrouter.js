@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const Account = require('../models/Account');
-
+const Roblox = require('../models/Roblox');
+const Scratch = require('../models/Scratch');
 // route to get all acccounts
 router.get('/all', async (req, res) => {
   try {
-    const posts = await Account.find();
+    const posts = await Account.find().populate('roblox').populate('scratch');
     //  console.log(posts);
     // send back the posts as an json object
     res.json(posts);
@@ -61,6 +62,39 @@ router.delete('/:id', async (req, res) => {
     res.json(deletedAccount);
   } catch (err) {
     console.log(err);
+  }
+});
+// get account associated with specific roblox account
+router.post('/:accountId/roblox', async (req, res) => {
+  try {
+    // console.log(req.params.accountId);
+    const account = await Account.findById(req.params.accountId);
+    const { username, password } = req.body;
+    const robloxAccount = new Roblox({ username, password });
+    // console.log(account);
+    account.roblox.push(robloxAccount);
+    await account.save();
+    await robloxAccount.save();
+    res.json(account);
+  } catch (err) {
+    console.log('oops something went wrong', err);
+  }
+});
+
+// get account associated with specific scratch account
+router.post('/:accountId/scratch', async (req, res) => {
+  try {
+    // console.log(req.params.accountId);
+    const account = await Account.findById(req.params.accountId);
+    const { username, password } = req.body;
+    const scratchAccount = new Scratch({ username, password });
+    // console.log(account);
+    account.scratch.push(scratchAccount);
+    await account.save();
+    await scratchAccount.save();
+    res.json(account);
+  } catch (err) {
+    console.log('oops something went wrong', err);
   }
 });
 

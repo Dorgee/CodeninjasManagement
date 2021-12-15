@@ -17,14 +17,18 @@ const AccountSchema = mongoose.Schema({
   description: {
     type: String,
   },
-  roblox: {
-    type: Schema.Types.ObjectId,
-    ref: 'Robloxs',
-  },
-  scratch: {
-    type: Schema.Types.ObjectId,
-    ref: 'Scratch',
-  },
+  roblox: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Robloxs',
+    },
+  ],
+  scratch: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Scratch',
+    },
+  ],
 });
 
 module.exports = mongoose.model('Accounts', AccountSchema);

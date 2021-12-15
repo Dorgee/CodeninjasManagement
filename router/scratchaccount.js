@@ -2,40 +2,40 @@ const express = require('express');
 const router = express.Router();
 const Scratch = require('../models/Scratch');
 
-router.get('/all', async (req, res) => {
-  try {
-    const scratchAccounts = await Scratch.find();
-    //  console.log(posts);
-    // send back the posts as an json object
-    res.json(scratchAccounts);
-  } catch (err) {
-    res.json({ message: err });
-  }
-});
+// router.get('/all', async (req, res) => {
+//   try {
+//     const scratchAccounts = await Scratch.find();
+//     //  console.log(posts);
+//     // send back the posts as an json object
+//     res.json(scratchAccounts);
+//   } catch (err) {
+//     res.json({ message: err });
+//   }
+// });
 
-router.post('/', async (req, res) => {
-  const { username, password } = req.body;
-  const scratchAccount = new Scratch({
-    username: username,
-    password: password,
-  });
-  try {
-    const savedAccount = await scratchAccount.save();
-    res.json(savedAccount);
-  } catch (err) {
-    console.log(err);
-  }
-});
+// router.post('/', async (req, res) => {
+//   const { username, password } = req.body;
+//   const scratchAccount = new Scratch({
+//     username: username,
+//     password: password,
+//   });
+//   try {
+//     const savedAccount = await scratchAccount.save();
+//     res.json(savedAccount);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
 
 // find specific account
-router.get('/:accountId', async (req, res) => {
-  try {
-    const scratchAccount = await Scratch.findById(req.params.accountId);
-    res.json(scratchAccount);
-  } catch (err) {
-    res.json({ message: err });
-  }
-});
+// router.get('/:accountId', async (req, res) => {
+//   try {
+//     const scratchAccount = await Scratch.findById(req.params.accountId);
+//     res.json(scratchAccount);
+//   } catch (err) {
+//     res.json({ message: err });
+//   }
+// });
 // edit a sepcific account
 router.patch('/:accountId', async (req, res) => {
   try {

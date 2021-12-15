@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+Schema = mongoose.Schema;
 const ScratchSchema = mongoose.Schema({
   username: {
     type: String,
@@ -8,6 +8,10 @@ const ScratchSchema = mongoose.Schema({
   password: {
     type: String,
     required: true,
+  },
+  account: {
+    type: Schema.Types.ObjectId,
+    ref: 'Accounts',
   },
 });
 

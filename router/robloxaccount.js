@@ -1,41 +1,41 @@
 const express = require('express');
 const router = express.Router();
 const Roblox = require('../models/Roblox');
+const Account = require('../models/Account');
+// router.get('/all', async (req, res) => {
+//   try {
+//     const robloxAccounts = await Roblox.find();
+//     //  console.log(posts);
+//     // send back the posts as an json object
+//     res.json(robloxAccounts);
+//   } catch (err) {
+//     res.json({ message: err });
+//   }
+// });
 
-router.get('/all', async (req, res) => {
-  try {
-    const robloxAccounts = await Roblox.find();
-    //  console.log(posts);
-    // send back the posts as an json object
-    res.json(robloxAccounts);
-  } catch (err) {
-    res.json({ message: err });
-  }
-});
-
-router.post('/', async (req, res) => {
-  const { username, password } = req.body;
-  const robloxAccount = new Roblox({
-    username: username,
-    password: password,
-  });
-  try {
-    const savedAccount = await robloxAccount.save();
-    res.json(savedAccount);
-  } catch (err) {
-    console.log(err);
-  }
-});
+// router.post('/', async (req, res) => {
+//   const { username, password } = req.body;
+//   const robloxAccount = new Roblox({
+//     username: username,
+//     password: password,
+//   });
+//   try {
+//     const savedAccount = await robloxAccount.save();
+//     res.json(savedAccount);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
 
 // find specific account
-router.get('/:accountId', async (req, res) => {
-  try {
-    const robloxAccount = await Roblox.findById(req.params.accountId);
-    res.json(robloxAccount);
-  } catch (err) {
-    res.json({ message: err });
-  }
-});
+// router.get('/:accountId', async (req, res) => {
+//   try {
+//     const robloxAccount = await Roblox.findById(req.params.accountId);
+//     res.json(robloxAccount);
+//   } catch (err) {
+//     res.json({ message: err });
+//   }
+// });
 // edit a sepcific account
 router.patch('/:accountId', async (req, res) => {
   try {
@@ -59,5 +59,14 @@ router.delete('/:id', async (req, res) => {
     console.log(err);
   }
 });
+
+// router.post('/:id/roblox', async (req, res) =>{
+//   const {id} = req.params;
+//   const account = await Account.findById(id);
+//   const {username, password} = req.body;
+//   const robloxAccount = new Roblox ({username, password});
+//   account.roblox.push(robloxAccount);
+
+// })
 
 module.exports = router;

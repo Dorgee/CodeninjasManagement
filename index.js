@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 // routes
 app.use('/account', accountRoute);
 app.use('/roblox', robloxRouter);
-app.use('/scratch', scratchRouter);
+app.use('/account', scratchRouter);
 // mongoose.connect('mongodb://localhost:27017/test');
 
 // mongoose.connection.on('error', (err) => {
